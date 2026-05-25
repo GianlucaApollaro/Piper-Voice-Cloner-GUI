@@ -1,7 +1,8 @@
 @echo off
+cd /d "%~dp0\.."
 echo.
 echo ===================================================
-echo     Preparing Git Commit for v1.4
+echo     Preparing Git Commit for v1.0
 echo ===================================================
 echo.
 
@@ -14,7 +15,7 @@ git status -s
 
 echo.
 echo Committing changes...
-git commit -m "Music Separator v1.4 - The Workflow Update: Peak Normalization, Stereo Downmix, Only Drums Preset, Subfolder Toggle with smart naming, Silent Stem Deletion, Instant Playback, UI Polish + Add 5 new anvuew BS-Roformer models (karaoke, standard, ft1, magnitude, dereverb) and fix duplicate model entries"
+git commit -m "Piper Voice Cloner GUI v1.0 - Initial Release: Complete VITS-based voice cloner GUI optimized for RTX 5070 / CUDA 12.8, local Whisper model cache, zero-shot audio translation, Correction Studio, and Piper-TTS iOS ONNX compatibility."
 
 if errorlevel 1 (
     echo.
@@ -25,11 +26,13 @@ if errorlevel 1 (
 
 echo.
 echo Pushing changes to remote...
-git push
+git push origin main
 
 if errorlevel 1 (
     echo.
-    echo ERROR: Push failed. Please check your connection or remote repository.
+    echo ERROR: Push failed. Make sure you set your origin remote first:
+    echo        git remote add origin https://github.com/your-username/piper-voice-cloner-gui.git
+    echo.
     pause
     exit /b 1
 )
