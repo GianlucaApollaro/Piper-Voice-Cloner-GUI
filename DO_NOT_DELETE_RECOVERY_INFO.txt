@@ -1,0 +1,62 @@
+================================================================================
+                    GUIDA DI RECUPERO E CONFIGURAZIONE (RTX 5070 / 4070)
+================================================================================
+DATA ULTIMA MODIFICA: 11 Gennaio 2026
+AUTORE: Antigravity AI & User
+OGGETTO: Configurazione Stabile per RTX 5070 (Blackwell) e 4070 Super
+
+QUESTO FILE CONTIENE LE ISTRUZIONI VITALI PER IL RECUPERO DELL'AMBIENTE.
+NON CANCELLARE QUESTO FILE.
+
+--------------------------------------------------------------------------------
+1. IL PROBLEMA (RISOLTO)
+--------------------------------------------------------------------------------
+La scheda video RTX 5070 (architettura Blackwell, sm_120) richiede CUDA 12.8+.
+La versione stabile di PyTorch non supportava ancora questa architettura, causando errori.
+Abbiamo risolto usando la versione "Nightly" di PyTorch.
+
+--------------------------------------------------------------------------------
+2. LA CONFIGURAZIONE ATTUALE ("Golden State")
+--------------------------------------------------------------------------------
+- Immagine Docker: `piper-cuda12.8:latest`
+- Base: `pytorch/pytorch:2.5.1-cuda12.4-cudnn9-devel`
+- Aggiornamento: PyTorch Nightly (CUDA 12.8) installato sopra la base.
+- Compatibilità:
+  * RTX 5070: SI (sm_120 supportato)
+  * RTX 4070 Super: SI (sm_89 supportato, retro-compatibile)
+
+--------------------------------------------------------------------------------
+3. VERSIONE DEI PACCHETTI (LA RICETTA VINCENTE)
+--------------------------------------------------------------------------------
+Questi pacchetti DEVONO rimanere bloccati ("pinnati") alle versioni indicate.
+Se li aggiorni, Piper smetterà di funzionare ("ImportError" o crash).
+
+* torchmetrics < 0.12     (Le versioni nuove cambiano API usate da Piper)
+* pytorch-lightning < 2.0 (La v2.0 ha rimosso funzioni core usate da Piper)
+* numpy < 2.0.0           (La v2.0 rompe la compatibilità binaria con vecchie librerie C)
+* cython < 3              (Necessario per compilare il modulo `monotonic_align`)
+
+--------------------------------------------------------------------------------
+4. COME RICOSTRUIRE L'AMBIENTE (CASO DI DISASTRO)
+--------------------------------------------------------------------------------
+Se devi reinstallare tutto da zero:
+
+1. Installa Docker Desktop (e assicurati di avere >40GB liberi su disco).
+2. Esegui `clean_old_images.bat` per pulire spazio se necessario.
+3. Esegui `build_image.bat`.
+   -> Questo creerà l'immagine locale: `piper-cuda12.8:latest`
+
+4. Avvia il programma con `install_and_run.bat`.
+
+--------------------------------------------------------------------------------
+5. CONFIGURAZIONE PYTHON
+--------------------------------------------------------------------------------
+Il codice Python punta dinamicamente a questa immagine tramite:
+File: `core/config_manager.py`
+Variabile: `DOCKER_IMAGE = "piper-cuda12.8:latest"`
+
+Se cambi nome all'immagine nel Dockerfile, devi aggiornarlo anche lì.
+
+================================================================================
+FINE DEL DOCUMENTO
+================================================================================

@@ -1,0 +1,4 @@
+wxPython>=4.2.0
+requests
+pandas
+matplotlib

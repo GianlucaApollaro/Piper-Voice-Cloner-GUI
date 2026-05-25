@@ -1,0 +1,39 @@
+# Python temporary files
+__pycache__/
+*.pyc
+venv/
+.venv/
+build/
+dist/
+*.egg-info/
+
+# Local datasets and recordings
+dataset/
+processed/
+Datasets/
+
+# Model caches, downloads and checkpoints
+models_cache/
+checkpoints/
+lightning_logs/
+exported_model/
+
+# IDE files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# OS temporary files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Archives/Release files
+*.zip
+*.7z
+*.rar
+*.tar.gz

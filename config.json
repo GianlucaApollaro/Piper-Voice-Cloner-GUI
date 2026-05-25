@@ -1,0 +1,12 @@
+{
+    "dataset_path": "",
+    "language": "it",
+    "docker_image": "piper-cuda12.8:latest",
+    "batch_size": 32,
+    "max_epochs": 10000,
+    "quality": "medium",
+    "precision": "32",
+    "validation_split": 0.0,
+    "base_model_checkpoint": null,
+    "use_single_speaker": false
+}
