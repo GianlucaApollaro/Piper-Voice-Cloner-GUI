@@ -9,17 +9,17 @@ A modern, user-friendly graphical interface (wxPython) for training, testing, an
 
 ---
 
-## 🌟 Key Features & New Additions
+## Key Features & New Additions
 
-### 🚀 Performance & Caching
+### Performance & Caching
 * **Local Faster-Whisper Cache**: Mounts a local `models_cache` folder directly into the Docker containers. This prevents redownloading the 3GB Whisper `large-v3` model, drastically speeding up dataset transcription and translation starts.
 * **Auto GPU Acceleration Setup**: Detects NVIDIA RTX 20/30/40/50 series cards and configures optimal batch sizes and mixed-precision (16-bit) settings dynamically.
 
-### 🎙️ Dataset Ingestion & Translation
+### Dataset Ingestion & Translation
 * **Prosody-First Audio Splitting**: Automated splitting logic prioritizing breathing pauses and sentence structure (gaps >300ms favored, gaps <150ms penalized) to ensure natural speech flow (2-15s clips).
 * **Zero-Shot Audio Translation**: Whisper-based translation tab utilizing zero-shot target language conditioning. Translate speech from any language directly to Italian, Spanish, French, German, or English.
 
-### ✏️ Correction Studio
+### Correction Studio
 * **Keyboard Hotkeys**: Streamlined workflow with explicit keyboard controls:
   * **F3**: Search segments by text or file ID.
   * **F4**: Go to Previous segment.
@@ -28,7 +28,7 @@ A modern, user-friendly graphical interface (wxPython) for training, testing, an
   * **Ctrl+S**: Save edits to disk (auto-saves on segment navigation).
 * **Concurrent Metadata Operations**: Safely updates transcripts while background ingestion processes are running.
 
-### 📱 Mobile Compatibility & Export
+### Mobile Compatibility & Export
 * **Piper-TTS iOS/Mobile Enrichment**: During model export, the system automatically post-processes and enriches the generated `{model}.onnx.json` config file:
   * Upgrades audio quality labels (e.g., changing internal `"dataset"` value to `"medium"`).
   * Fills in missing regional metadata (native language name, English language family, region code, and country name).
@@ -36,7 +36,7 @@ A modern, user-friendly graphical interface (wxPython) for training, testing, an
 
 ---
 
-## 📋 System Requirements
+## System Requirements
 
 * **OS**: Windows 10 or Windows 11.
 * **GPU**: NVIDIA Graphics Card (RTX 20, 30, 40, or 50 series).
@@ -46,7 +46,7 @@ A modern, user-friendly graphical interface (wxPython) for training, testing, an
 
 ---
 
-## ⚙️ Installation & First-Time Setup
+## Installation & First-Time Setup
 
 1. **Clone/Copy Project Folder**: Copy the repository contents into a directory (e.g., `C:\piper_ui` or `J:\piper_ui`). **Do not use folders containing spaces in their paths.**
 2. **Build the Container Image**: Double-click `build_image.bat`.
@@ -56,7 +56,7 @@ A modern, user-friendly graphical interface (wxPython) for training, testing, an
 
 ---
 
-## 🚀 Running the App
+## Running the App
 
 1. Double-click `install_and_run.bat`.
 2. The graphical interface will open.
@@ -64,7 +64,7 @@ A modern, user-friendly graphical interface (wxPython) for training, testing, an
 
 ---
 
-## 📖 Step-by-Step Workflow Guide
+## Step-by-Step Workflow Guide
 
 ### Step 1: Prepare the Dataset (Dataset Tab)
 1. **Audio Source**: Select the folder containing your raw recordings (`.wav` or `.mp3`).
@@ -106,12 +106,12 @@ A modern, user-friendly graphical interface (wxPython) for training, testing, an
 ### Step 6: Test Voice (Test Tab)
 1. Load your exported `model.onnx` file.
 2. Write text or load a document.
-3. Click **Generate Audio** and click **Play 🔊** to listen.
+3. Click **Generate Audio** and click **Play to listen**.
 4. Save the generated voice as a `.wav` file by clicking **Save Audio...**.
 
 ---
 
-## 🧹 Docker & Disk Maintenance
+## Docker & Disk Maintenance
 
 Because Docker and WSL2 virtual disks grow over time on Windows, follow these maintenance steps to reclaim space:
 
@@ -153,7 +153,7 @@ Run these commands in PowerShell or Command Prompt:
 
 ---
 
-## 📦 Packaging & Sharing
+## Packaging & Sharing
 
 Before zipping this project folder to share it with others or backup, **delete** these temporary directories to protect your privacy and reduce the archive size by several gigabytes:
 * `venv/` (your local python environment)
@@ -166,9 +166,8 @@ Before zipping this project folder to share it with others or backup, **delete**
 
 ---
 
-## 🤝 Acknowledgements & Credits
+## Acknowledgements & Credits
 
-* **Michael Hansen ([synesthesiam](https://github.com/synesthesiam))**: Original author and creator of [Piper](https://github.com/rhasspy/piper), developed under the [Rhasspy](https://github.com/rhasspy) project.
+* **Michael Hansen (synesthesiam)**: Original author and creator of Piper, developed under the Rhasspy project.
 * **Salvatore Romano**: Project initiator who created the initial layout and features of this GUI application.
-* **Derek Lane ([dgl1984](https://github.com/dgl1984))**: Contributed key improvements, features, and optimizations to this repository.
-
+* **Derek Lane (dgl1984)**: Contributed key improvements, features, and optimizations to this repository.
