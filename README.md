@@ -163,3 +163,12 @@ Before zipping this project folder to share it with others or backup, **delete**
 * `exported_model/`
 * `checkpoints/`
 * `.git/` (if present)
+
+---
+
+## 🤝 Acknowledgements & Credits
+
+* **Michael Hansen ([synesthesiam](https://github.com/synesthesiam))**: Original author and creator of [Piper](https://github.com/rhasspy/piper), developed under the [Rhasspy](https://github.com/rhasspy) project.
+* **Salvatore Romano**: Project initiator who created the initial layout and features of this GUI application.
+* **Derek Lane ([dgl1984](https://github.com/dgl1984))**: Contributed key improvements, features, and optimizations to this repository.
+
