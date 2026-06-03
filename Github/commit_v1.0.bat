@@ -31,7 +31,7 @@ git push origin main
 if errorlevel 1 (
     echo.
     echo ERROR: Push failed. Make sure you set your origin remote first:
-    echo        git remote add origin https://github.com/your-username/piper-voice-cloner-gui.git
+    echo        git remote add origin https://github.com/GianlucaApollaro/piper-voice-cloner-gui.git
     echo.
     pause
     exit /b 1
