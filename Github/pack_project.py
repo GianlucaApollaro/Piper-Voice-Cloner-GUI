@@ -10,7 +10,8 @@ def pack_project():
         '.git', 'venv', '.venv', '__pycache__', 
         'dataset', 'processed', 'Datasets', 
         'lightning_logs', 'exported_model', 
-        'models_cache', 'checkpoints', '.vscode', '.idea'
+        'models_cache', 'checkpoints', '.vscode', '.idea',
+        'Github'
     }
     ignore_files = {
         output_filename,
