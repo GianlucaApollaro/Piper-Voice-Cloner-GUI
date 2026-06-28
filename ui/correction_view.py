@@ -129,7 +129,7 @@ class CorrectionView(wx.Panel):
         if os.path.exists(path):
             self.load_dataset(path)
         else:
-             wx.MessageBox(tr("invalid_path"), "Errore")
+             wx.MessageBox(tr("invalid_path"), tr("title_error"))
 
     def on_search(self, event):
         if not self.items:
@@ -216,7 +216,7 @@ class CorrectionView(wx.Panel):
                 self.current_index = -1
                 
         except Exception as e:
-            wx.MessageBox(tr("msg_load_error").format(e), "Errore")
+            wx.MessageBox(tr("msg_load_error").format(e), tr("title_error"))
 
     def load_item(self, index):
         if 0 <= index < len(self.items):
@@ -299,7 +299,7 @@ class CorrectionView(wx.Panel):
                     
             return True
         except Exception as e:
-            wx.MessageBox(f"{tr('save_error')} {e}", "Errore")
+            wx.MessageBox(f"{tr('save_error')} {e}", tr("title_error"))
             return False
 
     def on_delete(self, event):

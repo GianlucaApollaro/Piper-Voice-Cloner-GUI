@@ -2,7 +2,9 @@ import os
 import zipfile
 
 def pack_project():
-    output_filename = "Piper_Voice_Cloner_GUI_v1.0.zip"
+    import sys
+    version = sys.argv[1] if len(sys.argv) > 1 else "v1.0"
+    output_filename = f"Piper_Voice_Cloner_GUI_{version}.zip"
     print(f"Packaging project into {output_filename}...")
     
     # Directories/Files to completely ignore
@@ -11,11 +13,14 @@ def pack_project():
         'dataset', 'processed', 'Datasets', 
         'lightning_logs', 'exported_model', 
         'models_cache', 'checkpoints', '.vscode', '.idea',
-        'Github'
+        'Github', 'graphify-out'
     }
     ignore_files = {
         output_filename,
-        'Piper_Voice_Cloner_GUI_v1.0.zip'
+        'Piper_Voice_Cloner_GUI_v1.0.zip',
+        'Piper_Voice_Cloner_GUI_v1.1.zip',
+        'graph.html',
+        'graph.json'
     }
     
     # We run relative to the parent directory of Github, i.e., project root

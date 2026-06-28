@@ -268,5 +268,11 @@
     "status_all_deleted": "All segments deleted.",
     "status_fail_delete": "Failed to delete {}: {}",
     "preprocess_info_note": "Piper Preprocessing: Converts processed audio into format ready for training.",
-    "log_workers_count": "Workers: {}"
+    "log_workers_count": "Workers: {}",
+    "title_error": "Error",
+    "msg_load_ckpt_error": "Error loading checkpoints: {}",
+    "err_no_translation_received": "Error: No translated text received",
+    "err_extract_translation_fail": "Unable to extract translated text.",
+    "translation_file_prefix": "translation",
+    "msg_config_missing": "The 'config.json' file is missing in the dataset folder. It is required for exporting the model."
 }

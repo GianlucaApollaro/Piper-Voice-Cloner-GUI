@@ -80,15 +80,24 @@ class ExportView(wx.Panel):
         local_ckpt_path = self.entry_ckpt.GetValue()
         
         if not dataset_path or not os.path.exists(dataset_path):
-            wx.MessageBox(tr("invalid_path"), "Errore", wx.OK | wx.ICON_ERROR)
+            wx.MessageBox(tr("invalid_path"), tr("title_error"), wx.OK | wx.ICON_ERROR)
             return
 
         if not local_ckpt_path or not os.path.exists(local_ckpt_path):
-            wx.MessageBox(tr("invalid_path"), "Errore", wx.OK | wx.ICON_ERROR)
+            wx.MessageBox(tr("invalid_path"), tr("title_error"), wx.OK | wx.ICON_ERROR)
             return
 
         if os.path.isdir(local_ckpt_path):
-            wx.MessageBox(tr("ckpt_is_dir_error"), "Errore", wx.OK | wx.ICON_ERROR)
+            wx.MessageBox(tr("ckpt_is_dir_error"), tr("title_error"), wx.OK | wx.ICON_ERROR)
+            return
+            
+        # Verify config.json exists in dataset
+        config_path = os.path.join(dataset_path, "config.json")
+        if not os.path.exists(config_path):
+            wx.MessageBox(
+                tr("msg_config_missing"), 
+                tr("title_error"), wx.OK | wx.ICON_ERROR
+            )
             return
             
         # Verify checkpoint is inside dataset
@@ -143,7 +152,7 @@ class ExportView(wx.Panel):
                 wx.MessageBox(tr("export_success"), tr("title_success"), wx.OK | wx.ICON_INFORMATION)
             else:
                 self.log(tr("log_export_failed_banner"))
-                wx.MessageBox(tr("export_error"), "Errore", wx.OK | wx.ICON_ERROR)
+                wx.MessageBox(tr("export_error"), tr("title_error"), wx.OK | wx.ICON_ERROR)
                 
         except Exception as e:
             self.log(f"Exception: {str(e)}")

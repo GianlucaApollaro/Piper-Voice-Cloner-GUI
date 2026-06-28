@@ -181,7 +181,7 @@ import sys
 import subprocess
 
 def install_deps():
-    print("Installazione dipendenze...")
+    print("Installing dependencies...")
     subprocess.check_call([sys.executable, "-m", "pip", "install", "faster-whisper"], stdout=subprocess.DEVNULL)
 
 try:
@@ -191,14 +191,14 @@ except ImportError:
     from faster_whisper import WhisperModel
 
 def translate_audio(audio_path, target_lang):
-    print("Caricamento modello Whisper...")
+    print("Loading Whisper model...")
     try:
         model = WhisperModel("large-v3", device="cuda", compute_type="float16")
     except:
-        print("Fallback a modello medium...")
+        print("Fallback to medium model...")
         model = WhisperModel("medium", device="cuda", compute_type="float16")
     
-    print(f"Traduzione in {{target_lang}}...")
+    print(f"Translating to {{target_lang}}...")
     
     # Whisper task="translate" translates to English by default
     # For other languages, we need to transcribe and then translate
@@ -206,13 +206,13 @@ def translate_audio(audio_path, target_lang):
         # Direct translation to English
         segments, info = model.transcribe(audio_path, task="translate")
         detected_lang = info.language if hasattr(info, 'language') else 'unknown'
-        print(f"Lingua rilevata: {{detected_lang}}")
+        print(f"Detected language: {{detected_lang}}")
     else:
         # Forziamo il task transcribe e il target_lang per ottenere una traduzione zero-shot
         segments, info = model.transcribe(audio_path, task="transcribe", language=target_lang)
         detected_lang = info.language if hasattr(info, 'language') else 'unknown'
-        print(f"Lingua rilevata: {{detected_lang}} (Forzata a {target_lang})")
-        print("NOTA: Whisper esegue una traduzione zero-shot forzando la lingua di output.")
+        print(f"Detected language: {{detected_lang}} (Forced to {target_lang})")
+        print("NOTE: Whisper performs a zero-shot translation by forcing the output language.")
     
     text = " ".join([s.text for s in segments]).strip()
     
@@ -276,10 +276,10 @@ if __name__ == "__main__":
                     if self.status_callback:
                         wx.CallAfter(self.status_callback, tr("trans_complete"))
                 else:
-                    self.log("Errore: Nessun testo tradotto ricevuto")
+                    self.log(tr("err_no_translation_received"))
                     wx.CallAfter(
                         wx.MessageBox,
-                        "Impossibile estrarre il testo tradotto.",
+                        tr("err_extract_translation_fail"),
                         tr("title_env_error"),
                         wx.OK | wx.ICON_ERROR
                     )
@@ -314,7 +314,7 @@ if __name__ == "__main__":
         # Generate default filename
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
         target_lang = self.choice_target_lang.GetStringSelection().split("(")[1].split(")")[0]
-        default_name = f"traduzione_{target_lang}_{timestamp}.txt"
+        default_name = f"{tr('translation_file_prefix')}_{target_lang}_{timestamp}.txt"
         
         dlg = wx.FileDialog(
             self,

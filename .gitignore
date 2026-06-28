@@ -37,3 +37,9 @@ Desktop.ini
 *.7z
 *.rar
 *.tar.gz
+
+# Graphify Outputs
+graphify-out/
+graph.html
+graph.json
+

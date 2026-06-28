@@ -155,7 +155,7 @@ class TrainView(wx.Panel):
         try:
             self.load_checkpoints()
         except Exception as e:
-            wx.MessageBox(f"Errore caricamento checkpoints: {e}", "Errore")
+            wx.MessageBox(tr("msg_load_ckpt_error").format(e), tr("title_error"))
         
         main_sizer.Add(grid_sizer, 0, wx.EXPAND | wx.ALL, 10)
         
@@ -365,7 +365,7 @@ class TrainView(wx.Panel):
     def generate_analysis_report(self):
         dataset_path = self.entry_path.GetValue()
         if not os.path.exists(dataset_path):
-             wx.MessageBox(tr("msg_ds_not_found"), "Errore")
+             wx.MessageBox(tr("msg_ds_not_found"), tr("title_error"))
              return
              
         # Import dynamically to avoid top-level issues if dependencies missing
@@ -395,10 +395,10 @@ class TrainView(wx.Panel):
             wx.MessageBox(tr("msg_analysis_success"), tr("title_success"))
             
         except ImportError:
-             wx.MessageBox(tr("msg_libs_missing"), "Errore")
+             wx.MessageBox(tr("msg_libs_missing"), tr("title_error"))
         except Exception as e:
              self.log(tr("log_analysis_error").format(e))
-             wx.MessageBox(tr("msg_analysis_error").format(e), "Errore")
+             wx.MessageBox(tr("msg_analysis_error").format(e), tr("title_error"))
 
     def _training_thread(self, dataset_path, batch_size, val_split, precision, max_epochs, ckpt_freq, learning_rate, monitor_val_loss, num_workers, accumulate_grad_batches, autoexport_enabled=False, autoexport_keep_n=5, autoexport_best_x=10):
         try:

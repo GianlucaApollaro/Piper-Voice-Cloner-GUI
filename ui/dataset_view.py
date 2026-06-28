@@ -265,7 +265,7 @@ class DatasetView(wx.Panel):
     def on_merge_btn(self, event):
         target_path = self.entry_path.GetValue()
         if not target_path or not os.path.exists(os.path.join(target_path, "metadata.csv")):
-            wx.MessageBox(tr("msg_load_target_first"), "Errore")
+            wx.MessageBox(tr("msg_load_target_first"), tr("title_error"))
             return
 
         dlg = wx.DirDialog(self, tr("dlg_select_new_source"))
@@ -285,7 +285,7 @@ class DatasetView(wx.Panel):
         target_meta = os.path.join(target_path, "metadata.csv")
 
         if not os.path.exists(source_meta):
-            wx.MessageBox(tr("msg_invalid_dataset_missing_meta"), "Errore")
+            wx.MessageBox(tr("msg_invalid_dataset_missing_meta"), tr("title_error"))
             return
 
         def looks_like_embedded_metadata(text):
