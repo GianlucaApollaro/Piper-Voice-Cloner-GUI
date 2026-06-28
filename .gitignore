@@ -43,3 +43,7 @@ graphify-out/
 graph.html
 graph.json
 
+# Batch Scripts
+Github/*.bat
+
+

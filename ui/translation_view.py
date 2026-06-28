@@ -176,12 +176,21 @@ class TranslationView(wx.Panel):
              # If not present, we will rely on internal logic or error out?
             # Creating it on the fly is safer as per previous logic
             
+            # Evaluate translations on host side
+            lbl_install_deps = tr("log_whisper_installing_deps")
+            lbl_loading_model = tr("log_whisper_loading_model")
+            lbl_fallback = tr("log_whisper_fallback_medium")
+            lbl_translating = tr("log_whisper_translating").format(target_lang)
+            lbl_detected = tr("log_whisper_detected_lang")
+            lbl_detected_forced = tr("log_whisper_detected_lang_forced").format("{detected_lang}", target_lang)
+            lbl_zero_shot = tr("log_whisper_zero_shot_note")
+
             script_content = f'''
 import sys
 import subprocess
 
 def install_deps():
-    print("Installing dependencies...")
+    print("{lbl_install_deps}")
     subprocess.check_call([sys.executable, "-m", "pip", "install", "faster-whisper"], stdout=subprocess.DEVNULL)
 
 try:
@@ -191,14 +200,14 @@ except ImportError:
     from faster_whisper import WhisperModel
 
 def translate_audio(audio_path, target_lang):
-    print("Loading Whisper model...")
+    print("{lbl_loading_model}")
     try:
         model = WhisperModel("large-v3", device="cuda", compute_type="float16")
     except:
-        print("Fallback to medium model...")
+        print("{lbl_fallback}")
         model = WhisperModel("medium", device="cuda", compute_type="float16")
     
-    print(f"Translating to {{target_lang}}...")
+    print("{lbl_translating}")
     
     # Whisper task="translate" translates to English by default
     # For other languages, we need to transcribe and then translate
@@ -206,13 +215,13 @@ def translate_audio(audio_path, target_lang):
         # Direct translation to English
         segments, info = model.transcribe(audio_path, task="translate")
         detected_lang = info.language if hasattr(info, 'language') else 'unknown'
-        print(f"Detected language: {{detected_lang}}")
+        print(f"{lbl_detected}: {{detected_lang}}")
     else:
         # Forziamo il task transcribe e il target_lang per ottenere una traduzione zero-shot
         segments, info = model.transcribe(audio_path, task="transcribe", language=target_lang)
         detected_lang = info.language if hasattr(info, 'language') else 'unknown'
-        print(f"Detected language: {{detected_lang}} (Forced to {target_lang})")
-        print("NOTE: Whisper performs a zero-shot translation by forcing the output language.")
+        print(f"{lbl_detected_forced}")
+        print("{lbl_zero_shot}")
     
     text = " ".join([s.text for s in segments]).strip()
     

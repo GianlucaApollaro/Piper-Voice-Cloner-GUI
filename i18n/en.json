@@ -274,5 +274,12 @@
     "err_no_translation_received": "Error: No translated text received",
     "err_extract_translation_fail": "Unable to extract translated text.",
     "translation_file_prefix": "translation",
-    "msg_config_missing": "The 'config.json' file is missing in the dataset folder. It is required for exporting the model."
+    "msg_config_missing": "The 'config.json' file is missing in the dataset folder. It is required for exporting the model.",
+    "log_whisper_installing_deps": "Installing dependencies...",
+    "log_whisper_loading_model": "Loading Whisper model...",
+    "log_whisper_fallback_medium": "Fallback to medium model...",
+    "log_whisper_translating": "Translating to {}...",
+    "log_whisper_detected_lang": "Detected language",
+    "log_whisper_detected_lang_forced": "Detected language: {} (Forced to {})",
+    "log_whisper_zero_shot_note": "NOTE: Whisper performs a zero-shot translation by forcing the output language."
 }

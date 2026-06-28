@@ -274,5 +274,12 @@
     "err_no_translation_received": "Errore: Nessun testo tradotto ricevuto",
     "err_extract_translation_fail": "Impossibile estrarre il testo tradotto.",
     "translation_file_prefix": "traduzione",
-    "msg_config_missing": "Il file 'config.json' è mancante nella cartella del dataset. È necessario per l'esportazione del modello."
+    "msg_config_missing": "Il file 'config.json' è mancante nella cartella del dataset. È necessario per l'esportazione del modello.",
+    "log_whisper_installing_deps": "Installazione dipendenze...",
+    "log_whisper_loading_model": "Caricamento modello Whisper...",
+    "log_whisper_fallback_medium": "Fallback a modello medium...",
+    "log_whisper_translating": "Traduzione in {}...",
+    "log_whisper_detected_lang": "Lingua rilevata",
+    "log_whisper_detected_lang_forced": "Lingua rilevata: {} (Forzata a {})",
+    "log_whisper_zero_shot_note": "NOTA: Whisper esegue una traduzione zero-shot forzando la lingua di output."
 }
